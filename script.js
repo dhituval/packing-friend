@@ -11,7 +11,7 @@ document.getElementById("generate").addEventListener("click", function () {
     }
 
     // Fetch weather data
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},US&appid=YOUR_API_KEY&units=imperial`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},US&appid=${apiKey}&units=imperial`)
         .then(response => response.json())
         .then(data => {
             // Extract weather information
