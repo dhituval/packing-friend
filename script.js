@@ -10,10 +10,20 @@ document.getElementById("generate").addEventListener("click", function () {
         return;
     }
 
+    console.log(`Fetching weather data for: ${city}`); // Debugging line
+
     // Fetch weather data
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},US&appid=${apiKey}&units=imperial`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`)
         .then(response => response.json())
         .then(data => {
+            console.log(data); // Debugging line to check the data received
+
+            // Check if data.main exists (to avoid accessing undefined data)
+            if (!data.main) {
+                outputDiv.innerText = "Error fetching weather data. Please check the city name.";
+                return;
+            }
+
             // Extract weather information
             const temperature = data.main.temp;
             const weather = data.weather[0].description;
